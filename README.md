@@ -2,9 +2,24 @@
 
 独立 Node CLI + 项目文档 Skill + 跨 Agent 流程 Skill + 最小 MCP。以《Claude 的建议.md》为首要约束；本包不依赖 SkillHub、Prism、VibeGuard 或旧 Python CORE-01。2026年11月06日。
 
+## 其他 Agent 一键安装
+
+新仓库：[jaminliu89/deterministic-codex-tools](https://github.com/jaminliu89/deterministic-codex-tools)（私有，需读取权限）。已有 Node >=22、Git 和 GitHub CLI 后，设置真实绝对路径：
+
+```sh
+DCT_HOME=/absolute/tools/deterministic-codex-tools
+PROJECT=/absolute/business-project
+SKILLS_DIR=/absolute/client/skills
+gh repo clone jaminliu89/deterministic-codex-tools "$DCT_HOME" && node "$DCT_HOME/scripts/setup.mjs" --project "$PROJECT" --type cli --skills-dir "$SKILLS_DIR" --apply
+```
+
+项目目录须已存在，工具目录须尚不存在。支持六种 --type；已有工具目录只运行 setup。去掉 --apply 可预览；重复执行不覆盖，已有不同内容会阻断。脚本生成针对性文档、两个Skill和填好绝对路径的项目MCP配置，CLI立即可用；安装成功不代表项目已验收。无需 npm install。
+
+完整操作见 [Agent 快速开始](docs/AGENT-QUICKSTART.md)，可直接交给其他 Agent 的执行指令见 [安装任务指令](docs/AGENT-INSTALL-PROMPT.md)。MCP客户端格式不同，生成配置需审阅合并；不会覆盖全局客户端配置。
+
 ## 直接运行
 
-需要已有 Node >=22、Git；Python unittest 检查另需项目自己的 Python。零第三方运行时依赖，无安装脚本、不下载模型。解压后将下方 DCT_HOME 改为包的绝对路径，PROJECT 改为已存在、非符号链接目录。可直接运行，不必 npm install。
+需要已有 Node >=22、Git；Python unittest 检查另需项目自己的 Python。零第三方运行时依赖，无自动安装钩子、不下载模型。解压后将下方 DCT_HOME 改为包的绝对路径，PROJECT 改为已存在、非符号链接目录。可直接运行，不必 npm install。
 
 ```sh
 DCT_HOME=/absolute/deterministic-codex-tools

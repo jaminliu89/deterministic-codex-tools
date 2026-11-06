@@ -5,7 +5,7 @@ import hashlib, json, os, stat, sys, zipfile
 root=Path(__file__).resolve().parents[1]
 out=Path(sys.argv[1]).resolve()
 out.mkdir(parents=True,exist_ok=True)
-allowed_dirs={'bin','lib','templates','skills','mcp','tests','docs','examples','scripts','evidence'}
+allowed_dirs={'.github','bin','lib','templates','skills','mcp','tests','docs','examples','scripts','evidence'}
 allowed_files={'package.json','.gitignore','AGENTS.md','PROGRESS.md','README.md','LICENSE'}
 files=sorted(p for p in root.rglob('*') if p.is_file() and ((p.relative_to(root).parts[0] in allowed_dirs) or p.relative_to(root).as_posix() in allowed_files) and '__pycache__' not in p.parts)
 for p in files:

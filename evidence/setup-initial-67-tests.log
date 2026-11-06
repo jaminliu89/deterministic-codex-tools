@@ -1,0 +1,479 @@
+
+> deterministic-codex-tools@1.0.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: tailored init and incomplete rejection: static-web
+ok 1 - tailored init and incomplete rejection: static-web
+  ---
+  duration_ms: 67.897458
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: fullstack-saas
+ok 2 - tailored init and incomplete rejection: fullstack-saas
+  ---
+  duration_ms: 49.086708
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: python
+ok 3 - tailored init and incomplete rejection: python
+  ---
+  duration_ms: 46.20775
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: cli
+ok 4 - tailored init and incomplete rejection: cli
+  ---
+  duration_ms: 47.68925
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: ai-agent
+ok 5 - tailored init and incomplete rejection: ai-agent
+  ---
+  duration_ms: 47.182458
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: legacy-reorg
+ok 6 - tailored init and incomplete rejection: legacy-reorg
+  ---
+  duration_ms: 46.31975
+  type: 'test'
+  ...
+# Subtest: configured real process works for static-web
+ok 7 - configured real process works for static-web
+  ---
+  duration_ms: 369.182042
+  type: 'test'
+  ...
+# Subtest: configured real process works for fullstack-saas
+ok 8 - configured real process works for fullstack-saas
+  ---
+  duration_ms: 421.363667
+  type: 'test'
+  ...
+# Subtest: configured real process works for python
+ok 9 - configured real process works for python
+  ---
+  duration_ms: 347.485875
+  type: 'test'
+  ...
+# Subtest: configured real process works for cli
+ok 10 - configured real process works for cli
+  ---
+  duration_ms: 329.966
+  type: 'test'
+  ...
+# Subtest: configured real process works for ai-agent
+ok 11 - configured real process works for ai-agent
+  ---
+  duration_ms: 329.746209
+  type: 'test'
+  ...
+# Subtest: configured real process works for legacy-reorg
+ok 12 - configured real process works for legacy-reorg
+  ---
+  duration_ms: 342.621125
+  type: 'test'
+  ...
+# Subtest: docs-only output and preserve AGENTS
+ok 13 - docs-only output and preserve AGENTS
+  ---
+  duration_ms: 4.29875
+  type: 'test'
+  ...
+# Subtest: unknown profile and relative project fail
+ok 14 - unknown profile and relative project fail
+  ---
+  duration_ms: 0.283542
+  type: 'test'
+  ...
+# Subtest: preflight conflict writes no other files
+ok 15 - preflight conflict writes no other files
+  ---
+  duration_ms: 0.283208
+  type: 'test'
+  ...
+# Subtest: existing AGENTS preserved by init
+ok 16 - existing AGENTS preserved by init
+  ---
+  duration_ms: 2.312334
+  type: 'test'
+  ...
+# Subtest: path traversal and .git metadata refused
+ok 17 - path traversal and .git metadata refused
+  ---
+  duration_ms: 0.154834
+  type: 'test'
+  ...
+# Subtest: symlink and hardlink cannot overwrite outside file
+ok 18 - symlink and hardlink cannot overwrite outside file
+  ---
+  duration_ms: 0.564833
+  type: 'test'
+  ...
+# Subtest: lock contention preserves holder
+ok 19 - lock contention preserves holder
+  ---
+  duration_ms: 0.275416
+  type: 'test'
+  ...
+# Subtest: lock released after failure
+ok 20 - lock released after failure
+  ---
+  duration_ms: 0.427542
+  type: 'test'
+  ...
+# Subtest: real JSON mismatch fails and preserves source/index
+ok 21 - real JSON mismatch fails and preserves source/index
+  ---
+  duration_ms: 442.22275
+  type: 'test'
+  ...
+# Subtest: zero Node tests refused
+ok 22 - zero Node tests refused
+  ---
+  duration_ms: 226.836625
+  type: 'test'
+  ...
+# Subtest: Node TAP real assertion pass
+ok 23 - Node TAP real assertion pass
+  ---
+  duration_ms: 248.325042
+  type: 'test'
+  ...
+# Subtest: Node skipped tests refused
+ok 24 - Node skipped tests refused
+  ---
+  duration_ms: 255.806125
+  type: 'test'
+  ...
+# Subtest: Node assertion failure refused
+ok 25 - Node assertion failure refused
+  ---
+  duration_ms: 256.851625
+  type: 'test'
+  ...
+# Subtest: Python unittest actual pass then failure
+ok 26 - Python unittest actual pass then failure
+  ---
+  duration_ms: 686.655666
+  type: 'test'
+  ...
+# Subtest: timeout refused and command does not fake green
+ok 27 - timeout refused and command does not fake green
+  ---
+  duration_ms: 265.342375
+  type: 'test'
+  ...
+# Subtest: source drift during check refused
+ok 28 - source drift during check refused
+  ---
+  duration_ms: 194.474792
+  type: 'test'
+  ...
+# Subtest: review import and exact binding gate, then stale refusal
+ok 29 - review import and exact binding gate, then stale refusal
+  ---
+  duration_ms: 552.208709
+  type: 'test'
+  ...
+# Subtest: self-review cannot approve
+ok 30 - self-review cannot approve
+  ---
+  duration_ms: 125.660167
+  type: 'test'
+  ...
+# Subtest: fake role with missing context rejected
+ok 31 - fake role with missing context rejected
+  ---
+  duration_ms: 113.4765
+  type: 'test'
+  ...
+# Subtest: handoff actual failure state and resume drift
+ok 32 - handoff actual failure state and resume drift
+  ---
+  duration_ms: 369.7505
+  type: 'test'
+  ...
+# Subtest: main and detached head rejected
+ok 33 - main and detached head rejected
+  ---
+  duration_ms: 188.5385
+  type: 'test'
+  ...
+# Subtest: parent repo cannot be nested silently
+ok 34 - parent repo cannot be nested silently
+  ---
+  duration_ms: 55.015875
+  type: 'test'
+  ...
+# Subtest: protected and out-of-scope changes refused
+ok 35 - protected and out-of-scope changes refused
+  ---
+  duration_ms: 104.604083
+  type: 'test'
+  ...
+# Subtest: secret findings redact value, env is never printed
+ok 36 - secret findings redact value, env is never printed
+  ---
+  duration_ms: 99.169542
+  type: 'test'
+  ...
+# Subtest: runtime mock refused; explicitly scoped test fixture permitted
+ok 37 - runtime mock refused; explicitly scoped test fixture permitted
+  ---
+  duration_ms: 125.620583
+  type: 'test'
+  ...
+# Subtest: SaaS missing admin artifact refused
+ok 38 - SaaS missing admin artifact refused
+  ---
+  duration_ms: 95.289291
+  type: 'test'
+  ...
+# Subtest: malformed config and weakened policy refused
+ok 39 - malformed config and weakened policy refused
+  ---
+  duration_ms: 74.816958
+  type: 'test'
+  ...
+# Subtest: doc contract tamper refused
+ok 40 - doc contract tamper refused
+  ---
+  duration_ms: 95.508958
+  type: 'test'
+  ...
+# Subtest: hook plans preserve existing Git config and hooks
+ok 41 - hook plans preserve existing Git config and hooks
+  ---
+  duration_ms: 119.039667
+  type: 'test'
+  ...
+# Subtest: hook blocks actual commit and preserves working changes
+ok 42 - hook blocks actual commit and preserves working changes
+  ---
+  duration_ms: 399.214791
+  type: 'test'
+  ...
+# Subtest: CI generation is preview/non-overwrite
+ok 43 - CI generation is preview/non-overwrite
+  ---
+  duration_ms: 42.693333
+  type: 'test'
+  ...
+# Subtest: CLI unknown commands/options rejected, run opt-in
+ok 44 - CLI unknown commands/options rejected, run opt-in
+  ---
+  duration_ms: 365.649208
+  type: 'test'
+  ...
+# Subtest: fake exit zero output never sufficient TAP evidence
+ok 45 - fake exit zero output never sufficient TAP evidence
+  ---
+  duration_ms: 0.115583
+  type: 'test'
+  ...
+# Subtest: runtime source inside evidence directories changes binding
+ok 46 - runtime source inside evidence directories changes binding
+  ---
+  duration_ms: 340.838084
+  type: 'test'
+  ...
+# Subtest: arbitrary data under evidence remains source-bound
+ok 47 - arbitrary data under evidence remains source-bound
+  ---
+  duration_ms: 104.72125
+  type: 'test'
+  ...
+# Subtest: scope protection includes changes committed after fixed task baseline
+ok 48 - scope protection includes changes committed after fixed task baseline
+  ---
+  duration_ms: 120.881833
+  type: 'test'
+  ...
+# Subtest: hooks creates recoverable local config backup
+ok 49 - hooks creates recoverable local config backup
+  ---
+  duration_ms: 93.615041
+  type: 'test'
+  ...
+# Subtest: sibling toolkit layout avoids scanning tool implementation
+ok 50 - sibling toolkit layout avoids scanning tool implementation
+  ---
+  duration_ms: 101.488416
+  type: 'test'
+  ...
+# Subtest: shallow checkout rejects missing task baseline until history fetched
+ok 51 - shallow checkout rejects missing task baseline until history fetched
+  ---
+  duration_ms: 227.164584
+  type: 'test'
+  ...
+# Subtest: valid staged hook workflow commits then invalidates old HEAD evidence
+ok 52 - valid staged hook workflow commits then invalidates old HEAD evidence
+  ---
+  duration_ms: 635.647709
+  type: 'test'
+  ...
+# Subtest: stdio initialize/list/call actual handoff + review + sentinel
+ok 53 - stdio initialize/list/call actual handoff + review + sentinel
+  ---
+  duration_ms: 457.328209
+  type: 'test'
+  ...
+# Subtest: MCP tools require initialized
+ok 54 - MCP tools require initialized
+  ---
+  duration_ms: 82.509708
+  type: 'test'
+  ...
+# Subtest: MCP parse error recovers to valid lifecycle
+ok 55 - MCP parse error recovers to valid lifecycle
+  ---
+  duration_ms: 82.670833
+  type: 'test'
+  ...
+# Subtest: MCP rejects arbitrary project and command arguments
+ok 56 - MCP rejects arbitrary project and command arguments
+  ---
+  duration_ms: 189.989416
+  type: 'test'
+  ...
+# Subtest: MCP unconfigured project returns tool error, never approval
+ok 57 - MCP unconfigured project returns tool error, never approval
+  ---
+  duration_ms: 101.305542
+  type: 'test'
+  ...
+# Subtest: MCP unknown method/tool and invalid JSON-RPC fail
+ok 58 - MCP unknown method/tool and invalid JSON-RPC fail
+  ---
+  duration_ms: 90.128875
+  type: 'test'
+  ...
+# Subtest: MCP advertises supported old profile when new version requested
+ok 59 - MCP advertises supported old profile when new version requested
+  ---
+  duration_ms: 80.970208
+  type: 'test'
+  ...
+# Subtest: MCP initialized request with id is invalid instead of malformed response
+ok 60 - MCP initialized request with id is invalid instead of malformed response
+  ---
+  duration_ms: 86.37975
+  type: 'test'
+  ...
+# Subtest: setup preview creates nothing and apply creates functional MCP and both Skills
+not ok 61 - setup preview creates nothing and apply creates functional MCP and both Skills
+  ---
+  duration_ms: 1.851208
+  type: 'test'
+  location: '/Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/setup.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: 'TOOLKIT_IS_NOT_PROJECT'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    setup (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/scripts/setup.mjs:12:58)
+    TestContext.<anonymous> (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/setup.test.mjs:3:226)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: setup existing differing Skill blocks all project writes
+not ok 62 - setup existing differing Skill blocks all project writes
+  ---
+  duration_ms: 0.791334
+  type: 'test'
+  location: '/Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/setup.test.mjs:4:1'
+  failureType: 'testCodeFailure'
+  error: 'TOOLKIT_IS_NOT_PROJECT'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    setup (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/scripts/setup.mjs:12:58)
+    TestContext.<anonymous> (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/setup.test.mjs:4:169)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: setup preserves client config and reports merge separately
+not ok 63 - setup preserves client config and reports merge separately
+  ---
+  duration_ms: 0.256167
+  type: 'test'
+  location: '/Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/setup.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: 'TOOLKIT_IS_NOT_PROJECT'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    setup (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/scripts/setup.mjs:12:58)
+    TestContext.<anonymous> (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/setup.test.mjs:5:147)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: setup existing document conflict is non-destructive
+not ok 64 - setup existing document conflict is non-destructive
+  ---
+  duration_ms: 0.224375
+  type: 'test'
+  location: '/Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/setup.test.mjs:6:1'
+  failureType: 'testCodeFailure'
+  error: 'TOOLKIT_IS_NOT_PROJECT'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    setup (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/scripts/setup.mjs:12:58)
+    TestContext.<anonymous> (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/setup.test.mjs:6:141)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: setup refuses changed project type and changed MCP config
+not ok 65 - setup refuses changed project type and changed MCP config
+  ---
+  duration_ms: 0.215667
+  type: 'test'
+  location: '/Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/setup.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: 'TOOLKIT_IS_NOT_PROJECT'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    setup (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/scripts/setup.mjs:12:58)
+    TestContext.<anonymous> (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/setup.test.mjs:7:92)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: setup refuses symlink Skills destination and path inside project
+ok 66 - setup refuses symlink Skills destination and path inside project
+  ---
+  duration_ms: 1.951167
+  type: 'test'
+  ...
+# Subtest: setup executable rejects unknown args and supports help
+ok 67 - setup executable rejects unknown args and supports help
+  ---
+  duration_ms: 77.535916
+  type: 'test'
+  ...
+1..67
+# tests 67
+# suites 0
+# pass 62
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9654.499959
