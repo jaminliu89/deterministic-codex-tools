@@ -1,0 +1,374 @@
+
+> deterministic-codex-tools@1.0.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: tailored init and incomplete rejection: static-web
+ok 1 - tailored init and incomplete rejection: static-web
+  ---
+  duration_ms: 57.329209
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: fullstack-saas
+ok 2 - tailored init and incomplete rejection: fullstack-saas
+  ---
+  duration_ms: 45.147875
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: python
+ok 3 - tailored init and incomplete rejection: python
+  ---
+  duration_ms: 44.958333
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: cli
+ok 4 - tailored init and incomplete rejection: cli
+  ---
+  duration_ms: 49.041084
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: ai-agent
+ok 5 - tailored init and incomplete rejection: ai-agent
+  ---
+  duration_ms: 46.752958
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: legacy-reorg
+ok 6 - tailored init and incomplete rejection: legacy-reorg
+  ---
+  duration_ms: 45.343875
+  type: 'test'
+  ...
+# Subtest: configured real process works for static-web
+ok 7 - configured real process works for static-web
+  ---
+  duration_ms: 339.653666
+  type: 'test'
+  ...
+# Subtest: configured real process works for fullstack-saas
+ok 8 - configured real process works for fullstack-saas
+  ---
+  duration_ms: 377.492
+  type: 'test'
+  ...
+# Subtest: configured real process works for python
+ok 9 - configured real process works for python
+  ---
+  duration_ms: 330.768083
+  type: 'test'
+  ...
+# Subtest: configured real process works for cli
+ok 10 - configured real process works for cli
+  ---
+  duration_ms: 392.330709
+  type: 'test'
+  ...
+# Subtest: configured real process works for ai-agent
+ok 11 - configured real process works for ai-agent
+  ---
+  duration_ms: 392.356375
+  type: 'test'
+  ...
+# Subtest: configured real process works for legacy-reorg
+ok 12 - configured real process works for legacy-reorg
+  ---
+  duration_ms: 395.660375
+  type: 'test'
+  ...
+# Subtest: docs-only output and preserve AGENTS
+ok 13 - docs-only output and preserve AGENTS
+  ---
+  duration_ms: 1.003375
+  type: 'test'
+  ...
+# Subtest: unknown profile and relative project fail
+ok 14 - unknown profile and relative project fail
+  ---
+  duration_ms: 0.226667
+  type: 'test'
+  ...
+# Subtest: preflight conflict writes no other files
+ok 15 - preflight conflict writes no other files
+  ---
+  duration_ms: 0.406458
+  type: 'test'
+  ...
+# Subtest: existing AGENTS preserved by init
+ok 16 - existing AGENTS preserved by init
+  ---
+  duration_ms: 0.977166
+  type: 'test'
+  ...
+# Subtest: path traversal and .git metadata refused
+ok 17 - path traversal and .git metadata refused
+  ---
+  duration_ms: 0.112916
+  type: 'test'
+  ...
+# Subtest: symlink and hardlink cannot overwrite outside file
+ok 18 - symlink and hardlink cannot overwrite outside file
+  ---
+  duration_ms: 0.504958
+  type: 'test'
+  ...
+# Subtest: lock contention preserves holder
+ok 19 - lock contention preserves holder
+  ---
+  duration_ms: 0.259125
+  type: 'test'
+  ...
+# Subtest: lock released after failure
+ok 20 - lock released after failure
+  ---
+  duration_ms: 0.237542
+  type: 'test'
+  ...
+# Subtest: real JSON mismatch fails and preserves source/index
+ok 21 - real JSON mismatch fails and preserves source/index
+  ---
+  duration_ms: 411.75025
+  type: 'test'
+  ...
+# Subtest: zero Node tests refused
+ok 22 - zero Node tests refused
+  ---
+  duration_ms: 294.826167
+  type: 'test'
+  ...
+# Subtest: Node TAP real assertion pass
+ok 23 - Node TAP real assertion pass
+  ---
+  duration_ms: 243.655042
+  type: 'test'
+  ...
+# Subtest: Node skipped tests refused
+ok 24 - Node skipped tests refused
+  ---
+  duration_ms: 254.324167
+  type: 'test'
+  ...
+# Subtest: Node assertion failure refused
+ok 25 - Node assertion failure refused
+  ---
+  duration_ms: 277.444042
+  type: 'test'
+  ...
+# Subtest: Python unittest actual pass then failure
+ok 26 - Python unittest actual pass then failure
+  ---
+  duration_ms: 657.349833
+  type: 'test'
+  ...
+# Subtest: timeout refused and command does not fake green
+ok 27 - timeout refused and command does not fake green
+  ---
+  duration_ms: 275.013416
+  type: 'test'
+  ...
+# Subtest: source drift during check refused
+ok 28 - source drift during check refused
+  ---
+  duration_ms: 201.14425
+  type: 'test'
+  ...
+# Subtest: review import and exact binding gate, then stale refusal
+ok 29 - review import and exact binding gate, then stale refusal
+  ---
+  duration_ms: 583.140125
+  type: 'test'
+  ...
+# Subtest: self-review cannot approve
+ok 30 - self-review cannot approve
+  ---
+  duration_ms: 111.355708
+  type: 'test'
+  ...
+# Subtest: fake role with missing context rejected
+ok 31 - fake role with missing context rejected
+  ---
+  duration_ms: 125.045417
+  type: 'test'
+  ...
+# Subtest: handoff actual failure state and resume drift
+ok 32 - handoff actual failure state and resume drift
+  ---
+  duration_ms: 407.208
+  type: 'test'
+  ...
+# Subtest: main and detached head rejected
+ok 33 - main and detached head rejected
+  ---
+  duration_ms: 175.258167
+  type: 'test'
+  ...
+# Subtest: parent repo cannot be nested silently
+ok 34 - parent repo cannot be nested silently
+  ---
+  duration_ms: 56.3925
+  type: 'test'
+  ...
+# Subtest: protected and out-of-scope changes refused
+ok 35 - protected and out-of-scope changes refused
+  ---
+  duration_ms: 116.326083
+  type: 'test'
+  ...
+# Subtest: secret findings redact value, env is never printed
+ok 36 - secret findings redact value, env is never printed
+  ---
+  duration_ms: 102.4055
+  type: 'test'
+  ...
+# Subtest: runtime mock refused; explicitly scoped test fixture permitted
+ok 37 - runtime mock refused; explicitly scoped test fixture permitted
+  ---
+  duration_ms: 144.873916
+  type: 'test'
+  ...
+# Subtest: SaaS missing admin artifact refused
+ok 38 - SaaS missing admin artifact refused
+  ---
+  duration_ms: 106.864166
+  type: 'test'
+  ...
+# Subtest: malformed config and weakened policy refused
+ok 39 - malformed config and weakened policy refused
+  ---
+  duration_ms: 79.566875
+  type: 'test'
+  ...
+# Subtest: doc contract tamper refused
+ok 40 - doc contract tamper refused
+  ---
+  duration_ms: 98.878708
+  type: 'test'
+  ...
+# Subtest: hook plans preserve existing Git config and hooks
+ok 41 - hook plans preserve existing Git config and hooks
+  ---
+  duration_ms: 139.842875
+  type: 'test'
+  ...
+# Subtest: hook blocks actual commit and preserves working changes
+ok 42 - hook blocks actual commit and preserves working changes
+  ---
+  duration_ms: 438.702625
+  type: 'test'
+  ...
+# Subtest: CI generation is preview/non-overwrite
+ok 43 - CI generation is preview/non-overwrite
+  ---
+  duration_ms: 44.32325
+  type: 'test'
+  ...
+# Subtest: CLI unknown commands/options rejected, run opt-in
+ok 44 - CLI unknown commands/options rejected, run opt-in
+  ---
+  duration_ms: 409.897333
+  type: 'test'
+  ...
+# Subtest: fake exit zero output never sufficient TAP evidence
+ok 45 - fake exit zero output never sufficient TAP evidence
+  ---
+  duration_ms: 0.130042
+  type: 'test'
+  ...
+# Subtest: runtime source inside evidence directories changes binding
+ok 46 - runtime source inside evidence directories changes binding
+  ---
+  duration_ms: 358.224208
+  type: 'test'
+  ...
+# Subtest: arbitrary data under evidence remains source-bound
+ok 47 - arbitrary data under evidence remains source-bound
+  ---
+  duration_ms: 107.677834
+  type: 'test'
+  ...
+# Subtest: scope protection includes changes committed after fixed task baseline
+ok 48 - scope protection includes changes committed after fixed task baseline
+  ---
+  duration_ms: 125.330084
+  type: 'test'
+  ...
+# Subtest: hooks creates recoverable local config backup
+ok 49 - hooks creates recoverable local config backup
+  ---
+  duration_ms: 117.617292
+  type: 'test'
+  ...
+# Subtest: sibling toolkit layout avoids scanning tool implementation
+ok 50 - sibling toolkit layout avoids scanning tool implementation
+  ---
+  duration_ms: 103.776041
+  type: 'test'
+  ...
+# Subtest: shallow checkout rejects missing task baseline until history fetched
+ok 51 - shallow checkout rejects missing task baseline until history fetched
+  ---
+  duration_ms: 211.853792
+  type: 'test'
+  ...
+# Subtest: valid staged hook workflow commits then invalidates old HEAD evidence
+ok 52 - valid staged hook workflow commits then invalidates old HEAD evidence
+  ---
+  duration_ms: 1068.143375
+  type: 'test'
+  ...
+# Subtest: stdio initialize/list/call actual handoff + review + sentinel
+ok 53 - stdio initialize/list/call actual handoff + review + sentinel
+  ---
+  duration_ms: 416.958542
+  type: 'test'
+  ...
+# Subtest: MCP tools require initialized
+ok 54 - MCP tools require initialized
+  ---
+  duration_ms: 80.636
+  type: 'test'
+  ...
+# Subtest: MCP parse error recovers to valid lifecycle
+ok 55 - MCP parse error recovers to valid lifecycle
+  ---
+  duration_ms: 78.182541
+  type: 'test'
+  ...
+# Subtest: MCP rejects arbitrary project and command arguments
+ok 56 - MCP rejects arbitrary project and command arguments
+  ---
+  duration_ms: 151.563375
+  type: 'test'
+  ...
+# Subtest: MCP unconfigured project returns tool error, never approval
+ok 57 - MCP unconfigured project returns tool error, never approval
+  ---
+  duration_ms: 84.813292
+  type: 'test'
+  ...
+# Subtest: MCP unknown method/tool and invalid JSON-RPC fail
+ok 58 - MCP unknown method/tool and invalid JSON-RPC fail
+  ---
+  duration_ms: 96.492708
+  type: 'test'
+  ...
+# Subtest: MCP advertises supported old profile when new version requested
+ok 59 - MCP advertises supported old profile when new version requested
+  ---
+  duration_ms: 79.779667
+  type: 'test'
+  ...
+# Subtest: MCP initialized request with id is invalid instead of malformed response
+ok 60 - MCP initialized request with id is invalid instead of malformed response
+  ---
+  duration_ms: 88.120375
+  type: 'test'
+  ...
+1..60
+# tests 60
+# suites 0
+# pass 60
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10436.885167

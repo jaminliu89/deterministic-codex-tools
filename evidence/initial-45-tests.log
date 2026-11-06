@@ -1,0 +1,332 @@
+
+> deterministic-codex-tools@1.0.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: tailored init and incomplete rejection: static-web
+ok 1 - tailored init and incomplete rejection: static-web
+  ---
+  duration_ms: 68.131375
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: fullstack-saas
+ok 2 - tailored init and incomplete rejection: fullstack-saas
+  ---
+  duration_ms: 45.375292
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: python
+ok 3 - tailored init and incomplete rejection: python
+  ---
+  duration_ms: 45.187708
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: cli
+ok 4 - tailored init and incomplete rejection: cli
+  ---
+  duration_ms: 42.116208
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: ai-agent
+ok 5 - tailored init and incomplete rejection: ai-agent
+  ---
+  duration_ms: 42.039834
+  type: 'test'
+  ...
+# Subtest: tailored init and incomplete rejection: legacy-reorg
+ok 6 - tailored init and incomplete rejection: legacy-reorg
+  ---
+  duration_ms: 42.465875
+  type: 'test'
+  ...
+# Subtest: configured real process works for static-web
+ok 7 - configured real process works for static-web
+  ---
+  duration_ms: 374.870958
+  type: 'test'
+  ...
+# Subtest: configured real process works for fullstack-saas
+ok 8 - configured real process works for fullstack-saas
+  ---
+  duration_ms: 350.414791
+  type: 'test'
+  ...
+# Subtest: configured real process works for python
+ok 9 - configured real process works for python
+  ---
+  duration_ms: 300.913167
+  type: 'test'
+  ...
+# Subtest: configured real process works for cli
+ok 10 - configured real process works for cli
+  ---
+  duration_ms: 355.221917
+  type: 'test'
+  ...
+# Subtest: configured real process works for ai-agent
+ok 11 - configured real process works for ai-agent
+  ---
+  duration_ms: 324.424167
+  type: 'test'
+  ...
+# Subtest: configured real process works for legacy-reorg
+ok 12 - configured real process works for legacy-reorg
+  ---
+  duration_ms: 291.429375
+  type: 'test'
+  ...
+# Subtest: docs-only output and preserve AGENTS
+ok 13 - docs-only output and preserve AGENTS
+  ---
+  duration_ms: 0.988083
+  type: 'test'
+  ...
+# Subtest: unknown profile and relative project fail
+ok 14 - unknown profile and relative project fail
+  ---
+  duration_ms: 0.199375
+  type: 'test'
+  ...
+# Subtest: preflight conflict writes no other files
+ok 15 - preflight conflict writes no other files
+  ---
+  duration_ms: 0.447125
+  type: 'test'
+  ...
+# Subtest: existing AGENTS preserved by init
+ok 16 - existing AGENTS preserved by init
+  ---
+  duration_ms: 0.910834
+  type: 'test'
+  ...
+# Subtest: path traversal and .git metadata refused
+ok 17 - path traversal and .git metadata refused
+  ---
+  duration_ms: 0.099958
+  type: 'test'
+  ...
+# Subtest: symlink and hardlink cannot overwrite outside file
+ok 18 - symlink and hardlink cannot overwrite outside file
+  ---
+  duration_ms: 0.487
+  type: 'test'
+  ...
+# Subtest: lock contention preserves holder
+ok 19 - lock contention preserves holder
+  ---
+  duration_ms: 0.263458
+  type: 'test'
+  ...
+# Subtest: lock released after failure
+ok 20 - lock released after failure
+  ---
+  duration_ms: 0.218958
+  type: 'test'
+  ...
+# Subtest: real JSON mismatch fails and preserves source/index
+ok 21 - real JSON mismatch fails and preserves source/index
+  ---
+  duration_ms: 375.283833
+  type: 'test'
+  ...
+# Subtest: zero Node tests refused
+ok 22 - zero Node tests refused
+  ---
+  duration_ms: 363.96225
+  type: 'test'
+  ...
+# Subtest: Node TAP real assertion pass
+not ok 23 - Node TAP real assertion pass
+  ---
+  duration_ms: 251.009083
+  type: 'test'
+  location: '/Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/core.test.mjs:28:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'NOT_READY'
+    - 'PASS'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'PASS'
+  actual: 'NOT_READY'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/core.test.mjs:28:88)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Node skipped tests refused
+ok 24 - Node skipped tests refused
+  ---
+  duration_ms: 237.211333
+  type: 'test'
+  ...
+# Subtest: Node assertion failure refused
+ok 25 - Node assertion failure refused
+  ---
+  duration_ms: 264.278959
+  type: 'test'
+  ...
+# Subtest: Python unittest actual pass then failure
+ok 26 - Python unittest actual pass then failure
+  ---
+  duration_ms: 477.559625
+  type: 'test'
+  ...
+# Subtest: timeout refused and command does not fake green
+ok 27 - timeout refused and command does not fake green
+  ---
+  duration_ms: 309.267167
+  type: 'test'
+  ...
+# Subtest: source drift during check refused
+ok 28 - source drift during check refused
+  ---
+  duration_ms: 232.975167
+  type: 'test'
+  ...
+# Subtest: review import and exact binding gate, then stale refusal
+ok 29 - review import and exact binding gate, then stale refusal
+  ---
+  duration_ms: 792.45225
+  type: 'test'
+  ...
+# Subtest: self-review cannot approve
+ok 30 - self-review cannot approve
+  ---
+  duration_ms: 185.93925
+  type: 'test'
+  ...
+# Subtest: fake role with missing context rejected
+ok 31 - fake role with missing context rejected
+  ---
+  duration_ms: 187.6345
+  type: 'test'
+  ...
+# Subtest: handoff actual failure state and resume drift
+ok 32 - handoff actual failure state and resume drift
+  ---
+  duration_ms: 413.51225
+  type: 'test'
+  ...
+# Subtest: main and detached head rejected
+ok 33 - main and detached head rejected
+  ---
+  duration_ms: 217.440959
+  type: 'test'
+  ...
+# Subtest: parent repo cannot be nested silently
+ok 34 - parent repo cannot be nested silently
+  ---
+  duration_ms: 104.691333
+  type: 'test'
+  ...
+# Subtest: protected and out-of-scope changes refused
+ok 35 - protected and out-of-scope changes refused
+  ---
+  duration_ms: 156.002792
+  type: 'test'
+  ...
+# Subtest: secret findings redact value, env is never printed
+ok 36 - secret findings redact value, env is never printed
+  ---
+  duration_ms: 138.43525
+  type: 'test'
+  ...
+# Subtest: runtime mock refused; explicitly scoped test fixture permitted
+ok 37 - runtime mock refused; explicitly scoped test fixture permitted
+  ---
+  duration_ms: 198.241
+  type: 'test'
+  ...
+# Subtest: SaaS missing admin artifact refused
+ok 38 - SaaS missing admin artifact refused
+  ---
+  duration_ms: 253.625792
+  type: 'test'
+  ...
+# Subtest: malformed config and weakened policy refused
+ok 39 - malformed config and weakened policy refused
+  ---
+  duration_ms: 179.160083
+  type: 'test'
+  ...
+# Subtest: doc contract tamper refused
+ok 40 - doc contract tamper refused
+  ---
+  duration_ms: 148.451375
+  type: 'test'
+  ...
+# Subtest: hook plans preserve existing Git config and hooks
+not ok 41 - hook plans preserve existing Git config and hooks
+  ---
+  duration_ms: 133.375959
+  type: 'test'
+  location: '/Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/core.test.mjs:48:1'
+  failureType: 'testCodeFailure'
+  error: 'EXISTING_HOOKS_PATH_PRESERVED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    installHooks (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/lib/core.mjs:168:94)
+    TestContext.<anonymous> (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/core.test.mjs:48:99)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: hook blocks actual commit and preserves working changes
+not ok 42 - hook blocks actual commit and preserves working changes
+  ---
+  duration_ms: 142.980042
+  type: 'test'
+  location: '/Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/core.test.mjs:49:1'
+  failureType: 'testCodeFailure'
+  error: 'EXISTING_HOOKS_PATH_PRESERVED'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    installHooks (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/lib/core.mjs:168:94)
+    TestContext.<anonymous> (file:///Users/kimliu/Developer/Codex/deterministic-codex-tools/tests/core.test.mjs:49:105)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: CI generation is preview/non-overwrite
+ok 43 - CI generation is preview/non-overwrite
+  ---
+  duration_ms: 94.443584
+  type: 'test'
+  ...
+# Subtest: CLI unknown commands/options rejected, run opt-in
+ok 44 - CLI unknown commands/options rejected, run opt-in
+  ---
+  duration_ms: 445.523292
+  type: 'test'
+  ...
+# Subtest: fake exit zero output never sufficient TAP evidence
+ok 45 - fake exit zero output never sufficient TAP evidence
+  ---
+  duration_ms: 0.162166
+  type: 'test'
+  ...
+1..45
+# tests 45
+# suites 0
+# pass 42
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8660.48125

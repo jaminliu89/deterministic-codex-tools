@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "cli",
+  "task": {
+    "id": "CLI-01",
+    "outcome": "Echo valid JSON, reject malformed input, preserve historical contract",
+    "coder": "actual-coder-context-id",
+    "baseHead": "REPLACE_WITH_VERIFIED_40_CHAR_GIT_BASELINE",
+    "allowedPaths": ["app.mjs", "tests", "docs", ".dct", "AGENTS.md", "HANDOVER.md", ".gitignore"],
+    "protectedPaths": ["stable"]
+  },
+  "checks": [
+    {"id":"new-behavior", "kind":"json-io", "argv":["node","app.mjs"], "timeoutMs":5000, "input":{"name":"张三","count":3}, "expected":{"name":"张三","count":3}},
+    {"id":"regression", "kind":"node-tap", "argv":["node","--test","--test-reporter=tap","tests/app.test.mjs"], "timeoutMs":10000, "minTests":2, "requiredTests":["unicode historical contract","malformed input rejects"]}
+  ],
+  "requiredCheckIds": ["new-behavior", "regression"],
+  "capabilities": [],
+  "artifacts": {},
+  "mockPaths": ["tests"],
+  "requireReview": true
+}

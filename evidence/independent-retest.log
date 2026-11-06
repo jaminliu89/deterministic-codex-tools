@@ -1,0 +1,11 @@
+{
+  "engine": "cd62dea8ebef3f872a60cf0aa8cc6350efee842e45f04c4ee7952a0833a0b5bf",
+  "checks": [
+    "reserved-directory source drift rejected",
+    "empty Node test rejected",
+    "Python same-size immediate failing edit rejected",
+    "MCP malformed initialized request rejected",
+    "local Git config backup matches original",
+    "committed protected change rejected against task baseHead"
+  ]
+}

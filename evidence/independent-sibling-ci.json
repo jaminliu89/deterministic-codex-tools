@@ -1,0 +1,32 @@
+{
+  "engine": "2d8f1531738ce3ec3a8e93063f2a9772828b91df3057ccd02cef760f4941bed7",
+  "siblingCliExit": 0,
+  "siblingActualReport": {
+    "schemaVersion": 1,
+    "id": "2026-11-06T14-53-03-191Z-f3fef16d",
+    "status": "PASS",
+    "binding": {
+      "source": "9c5220d2679eb225196e75a5ef4931ce24b92f0522eb596b493d57bf01d80de6",
+      "engine": "2d8f1531738ce3ec3a8e93063f2a9772828b91df3057ccd02cef760f4941bed7",
+      "head": "813b84955482283f39989304f62ec286d9537679",
+      "branch": "feature/test"
+    },
+    "task": "TEST-01",
+    "results": [
+      {
+        "status": "PASS",
+        "tests": 1,
+        "id": "behavior",
+        "exitCode": 0,
+        "signal": null,
+        "output": "{\"x\":3}\n"
+      }
+    ],
+    "drift": false,
+    "processIsolation": "NOT_VERIFIED",
+    "commands": "OWNER_TRUSTED_CODE",
+    "at": "2026-11-06T14:53:03.192Z"
+  },
+  "workflowFullHistory": true,
+  "githubExecution": "NOT_VERIFIED"
+}

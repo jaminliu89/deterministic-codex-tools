@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "deterministic-codex-tools": {
+      "command": "node",
+      "args": ["/ABSOLUTE/TOOLKIT/mcp/server.mjs", "--project", "/ABSOLUTE/PROJECT"]
+    }
+  }
+}

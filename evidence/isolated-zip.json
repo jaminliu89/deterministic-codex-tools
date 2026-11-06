@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "scope": "LOCAL_ZIP_CANDIDATE_IN_SPACE_PATH",
+  "manifestFiles": 41,
+  "hashMismatch": [],
+  "testExit": 0,
+  "tests": 60,
+  "helpExit": 0,
+  "syntaxExit": 0,
+  "sourceEngine": "2d8f1531738ce3ec3a8e93063f2a9772828b91df3057ccd02cef760f4941bed7",
+  "remoteCI": "NOT_VERIFIED",
+  "humanAcceptance": "PENDING"
+}

@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-06",
+  "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+  "node": "v22.23.2",
+  "python": "3.14.6",
+  "git": "git version 2.53.0",
+  "dependencies": "zero third-party runtime dependencies; npm ls --all empty"
+}

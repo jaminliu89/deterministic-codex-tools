@@ -1,0 +1,17 @@
+dct 1.0.0 — Node >=22; local only, no automatic reset/commit/push/deploy
+Usage: node /absolute/toolkit/bin/dct.mjs COMMAND --project /absolute/project [options]
+init --type TYPE [--apply]       Generate project docs and config without overwrites
+ docs --type TYPE [--apply]      Generate documentation only
+ check --run                    Run configured checks without independent-review claim
+ doctor                        Read-only structure/security/scope diagnostics
+ gate [--run] [--precommit] [--release]  Explicit --run executes trusted configured argv
+ review-request                 Print exact source-bound external review request
+ review-import --file REL       Import separate-context attestation; not identity proof
+ sentinel                       Record Git/failure state, never destructive rollback
+ handoff [--notes REL]           Save actual state plus goal/traps/next JSON notes
+ resume --file REL              Compare handoff binding with current source
+ hooks [--apply]                Plan/install non-overwriting local pre-commit hook
+ ci [--apply]                   Plan/install optional GitHub workflow
+ binding                        Print source/engine/HEAD/branch binding
+ types                          List project types
+--apply writes new files; default init/docs/hooks/ci is preview.

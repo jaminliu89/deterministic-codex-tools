@@ -1,0 +1,108 @@
+{
+  "scope": "TEST_ONLY_REAL_SUBPROCESSES",
+  "steps": [
+    {
+      "argv": [
+        "node",
+        "/Users/kimliu/Developer/Codex/deterministic-codex-tools/examples/create-demo.mjs",
+        "/Users/kimliu/Developer/Codex/deterministic-codex-tools/work/real demo with spaces"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"status\": \"CREATED\",\n  \"scope\": \"TEST_ONLY_DEMO\",\n  \"next\": \"Initialize Git feature branch and commit these demo files, then check --run. Gate remains NOT_READY until an actual independent review.\"\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "init",
+        "-b",
+        "feature/demo"
+      ],
+      "exit": 0,
+      "stdout": "Initialized empty Git repository in /Users/kimliu/Developer/Codex/deterministic-codex-tools/work/real demo with spaces/.git/\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "add",
+        "--",
+        "."
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "commit",
+        "-m",
+        "test-only executable JSON demo"
+      ],
+      "exit": 0,
+      "stdout": "[feature/demo (root-commit) 815059b] test-only executable JSON demo\n 14 files changed, 272 insertions(+)\n create mode 100644 .dct/config.json\n create mode 100644 .dct/doc-contract.json\n create mode 100644 .gitignore\n create mode 100644 AGENTS.md\n create mode 100644 HANDOVER.md\n create mode 100644 app.mjs\n create mode 100644 docs/change-log.md\n create mode 100644 docs/discovery.md\n create mode 100644 docs/launch-checklist.md\n create mode 100644 docs/product-design.md\n create mode 100644 docs/project-profile.md\n create mode 100644 docs/technical-design.md\n create mode 100644 docs/test-matrix.md\n create mode 100644 tests/app.test.mjs\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit": 0,
+      "stdout": "815059bdbc9b2e304d79258dad8f8a8765816177\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "node",
+        "/Users/kimliu/Developer/Codex/deterministic-codex-tools/bin/dct.mjs",
+        "doctor",
+        "--project",
+        "/Users/kimliu/Developer/Codex/deterministic-codex-tools/work/real demo with spaces"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"schemaVersion\": 1,\n  \"status\": \"PASS\",\n  \"issues\": [],\n  \"git\": {\n    \"ok\": true,\n    \"branch\": \"feature/demo\",\n    \"head\": \"815059bdbc9b2e304d79258dad8f8a8765816177\",\n    \"dirty\": true,\n    \"staged\": false\n  },\n  \"scan\": \"HEURISTIC_NOT_SECURITY_AUDIT\",\n  \"semanticAcceptance\": \"NOT_EVALUATED\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "node",
+        "/Users/kimliu/Developer/Codex/deterministic-codex-tools/bin/dct.mjs",
+        "check",
+        "--project",
+        "/Users/kimliu/Developer/Codex/deterministic-codex-tools/work/real demo with spaces",
+        "--run"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"schemaVersion\": 1,\n  \"id\": \"2026-11-06T14-54-12-317Z-8b4347a8\",\n  \"status\": \"PASS\",\n  \"binding\": {\n    \"source\": \"173804d9be175a1dce5864bf8bdccb897af0b24f6918da4086237f84a67b4a76\",\n    \"engine\": \"2d8f1531738ce3ec3a8e93063f2a9772828b91df3057ccd02cef760f4941bed7\",\n    \"head\": \"815059bdbc9b2e304d79258dad8f8a8765816177\",\n    \"branch\": \"feature/demo\"\n  },\n  \"task\": \"CLI-01\",\n  \"results\": [\n    {\n      \"status\": \"PASS\",\n      \"tests\": 1,\n      \"id\": \"new-behavior\",\n      \"exitCode\": 0,\n      \"signal\": null,\n      \"output\": \"{\\\"name\\\":\\\"张三\\\",\\\"count\\\":3}\\n\"\n    },\n    {\n      \"status\": \"PASS\",\n      \"tests\": 2,\n      \"id\": \"regression\",\n      \"exitCode\": 0,\n      \"signal\": null,\n      \"output\": \"TAP version 13\\n# Subtest: unicode historical contract\\nok 1 - unicode historical contract\\n  ---\\n  duration_ms: 39.26625\\n  type: 'test'\\n  ...\\n# Subtest: malformed input rejects\\nok 2 - malformed input rejects\\n  ---\\n  duration_ms: 33.423541\\n  type: 'test'\\n  ...\\n1..2\\n# tests 2\\n# suites 0\\n# pass 2\\n# fail 0\\n# cancelled 0\\n# skipped 0\\n# todo 0\\n# duration_ms 131.290084\\n\\n\"\n    }\n  ],\n  \"drift\": false,\n  \"processIsolation\": \"NOT_VERIFIED\",\n  \"commands\": \"OWNER_TRUSTED_CODE\",\n  \"at\": \"2026-11-06T14:54:12.317Z\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "node",
+        "/Users/kimliu/Developer/Codex/deterministic-codex-tools/bin/dct.mjs",
+        "gate",
+        "--project",
+        "/Users/kimliu/Developer/Codex/deterministic-codex-tools/work/real demo with spaces"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"schemaVersion\": 1,\n  \"status\": \"NOT_READY\",\n  \"issues\": [\n    \"INDEPENDENT_REVIEW_MISSING_OR_STALE\"\n  ],\n  \"binding\": {\n    \"source\": \"173804d9be175a1dce5864bf8bdccb897af0b24f6918da4086237f84a67b4a76\",\n    \"engine\": \"2d8f1531738ce3ec3a8e93063f2a9772828b91df3057ccd02cef760f4941bed7\",\n    \"head\": \"815059bdbc9b2e304d79258dad8f8a8765816177\",\n    \"branch\": \"feature/demo\"\n  },\n  \"scope\": \"LOCAL_CHECKS_AND_REVIEW_ATTESTATION\",\n  \"independentIdentity\": \"NOT_AUTHENTICATED\",\n  \"remoteCI\": \"NOT_VERIFIED\",\n  \"humanAcceptance\": \"PENDING\",\n  \"deployment\": \"NOT_VERIFIED\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "node",
+        "/Users/kimliu/Developer/Codex/deterministic-codex-tools/bin/dct.mjs",
+        "handoff",
+        "--project",
+        "/Users/kimliu/Developer/Codex/deterministic-codex-tools/work/real demo with spaces"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"status\": \"RECORDED\",\n  \"path\": \".dct/handoffs/2026-11-06T14-54-12-622Z-f905d902.json\",\n  \"schemaVersion\": 1,\n  \"binding\": {\n    \"source\": \"173804d9be175a1dce5864bf8bdccb897af0b24f6918da4086237f84a67b4a76\",\n    \"engine\": \"2d8f1531738ce3ec3a8e93063f2a9772828b91df3057ccd02cef760f4941bed7\",\n    \"head\": \"815059bdbc9b2e304d79258dad8f8a8765816177\",\n    \"branch\": \"feature/demo\"\n  },\n  \"git\": {\n    \"ok\": true,\n    \"branch\": \"feature/demo\",\n    \"head\": \"815059bdbc9b2e304d79258dad8f8a8765816177\",\n    \"dirty\": true,\n    \"staged\": false\n  },\n  \"doctor\": {\n    \"schemaVersion\": 1,\n    \"status\": \"PASS\",\n    \"issues\": [],\n    \"git\": {\n      \"ok\": true,\n      \"branch\": \"feature/demo\",\n      \"head\": \"815059bdbc9b2e304d79258dad8f8a8765816177\",\n      \"dirty\": true,\n      \"staged\": false\n    },\n    \"scan\": \"HEURISTIC_NOT_SECURITY_AUDIT\",\n    \"semanticAcceptance\": \"NOT_EVALUATED\"\n  },\n  \"latestRun\": {\n    \"schemaVersion\": 1,\n    \"id\": \"2026-11-06T14-54-12-317Z-8b4347a8\",\n    \"status\": \"PASS\",\n    \"binding\": {\n      \"source\": \"173804d9be175a1dce5864bf8bdccb897af0b24f6918da4086237f84a67b4a76\",\n      \"engine\": \"2d8f1531738ce3ec3a8e93063f2a9772828b91df3057ccd02cef760f4941bed7\",\n      \"head\": \"815059bdbc9b2e304d79258dad8f8a8765816177\",\n      \"branch\": \"feature/demo\"\n    },\n    \"task\": \"CLI-01\",\n    \"results\": [\n      {\n        \"status\": \"PASS\",\n        \"tests\": 1,\n        \"id\": \"new-behavior\",\n        \"exitCode\": 0,\n        \"signal\": null,\n        \"output\": \"{\\\"name\\\":\\\"张三\\\",\\\"count\\\":3}\\n\"\n      },\n      {\n        \"status\": \"PASS\",\n        \"tests\": 2,\n        \"id\": \"regression\",\n        \"exitCode\": 0,\n        \"signal\": null,\n        \"output\": \"TAP version 13\\n# Subtest: unicode historical contract\\nok 1 - unicode historical contract\\n  ---\\n  duration_ms: 39.26625\\n  type: 'test'\\n  ...\\n# Subtest: malformed input rejects\\nok 2 - malformed input rejects\\n  ---\\n  duration_ms: 33.423541\\n  type: 'test'\\n  ...\\n1..2\\n# tests 2\\n# suites 0\\n# pass 2\\n# fail 0\\n# cancelled 0\\n# skipped 0\\n# todo 0\\n# duration_ms 131.290084\\n\\n\"\n      }\n    ],\n    \"drift\": false,\n    \"processIsolation\": \"NOT_VERIFIED\",\n    \"commands\": \"OWNER_TRUSTED_CODE\",\n    \"at\": \"2026-11-06T14:54:12.317Z\"\n  },\n  \"goal\": \"NOT_PROVIDED\",\n  \"traps\": \"NOT_PROVIDED\",\n  \"next\": \"NOT_PROVIDED\",\n  \"at\": \"2026-11-06T14:54:12.622Z\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "gate": "EXPECTED_NOT_READY_NO_INDEPENDENT_REVIEW"
+}

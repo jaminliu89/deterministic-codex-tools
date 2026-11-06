@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { init } from '../lib/docs.mjs';
+import { rootOf,readJSON,read,create,json } from '../lib/fs.mjs';
+const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const root=rootOf(process.argv[2]??'');
+if(fs.readdirSync(root).length)throw Error('EMPTY_DEMO_DIRECTORY_REQUIRED');
+const r=init(root,'cli',true);if(r.status!=='CREATED')throw Error(json(r));
+const c=JSON.parse(fs.readFileSync(path.join(base,'examples/config.json'),'utf8'));
+c.task.coder='demo-coder-not-independent-reviewer';
+fs.writeFileSync(path.join(root,'.dct/config.json'),json(c));
+const contract=readJSON(root,'.dct/doc-contract.json');
+for(const [f,sections] of Object.entries(contract.sections))fs.writeFileSync(path.join(root,f),'# TEST-ONLY DEMO: not production acceptance\n\n'+sections.map(h=>'## '+h+'\n\nThis demo preserves JSON stdin as JSON stdout, including Unicode; malformed JSON exits nonzero. node --test validates a real child process. No deployment, account, external model or commercial outcome. See app.mjs and tests/app.test.mjs.\n').join('\n'));
+create(root,'app.mjs',"let s='';for await(const chunk of process.stdin)s+=chunk;try{process.stdout.write(JSON.stringify(JSON.parse(s)));}catch{process.stderr.write('INVALID_JSON\\n');process.exitCode=2;}\n");
+create(root,'tests/app.test.mjs',`import test from 'node:test';import assert from 'node:assert/strict';import {spawnSync} from 'node:child_process';
+test('unicode historical contract',()=>{const r=spawnSync(process.execPath,['app.mjs'],{cwd:process.cwd(),input:JSON.stringify({name:'张三',count:3}),encoding:'utf8'});assert.equal(r.status,0);assert.deepEqual(JSON.parse(r.stdout),{name:'张三',count:3});});
+test('malformed input rejects',()=>{const r=spawnSync(process.execPath,['app.mjs'],{cwd:process.cwd(),input:'{',encoding:'utf8'});assert.equal(r.status,2);assert.equal(r.stdout,'');assert.match(r.stderr,/INVALID_JSON/);});
+`);
+create(root,'.gitignore','.dct/runs/\n.dct/reviews/\n.dct/handoffs/\n.dct/operation.lock\n');
+console.log(json({status:'CREATED',scope:'TEST_ONLY_DEMO',next:'Initialize Git feature branch and commit these demo files, then check --run. Gate remains NOT_READY until an actual independent review.'}));

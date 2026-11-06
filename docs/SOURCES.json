@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-06",
+  "sources": [
+    {
+      "name": "06-案例-AI编程交付全流程(1).md",
+      "sha256": "d29a51b2d0c983e02e6a2ebdaa38d192171bd39da0cf27b6253329ebed9e0b93",
+      "bytes": 14938,
+      "priority": "SUPPLEMENT"
+    },
+    {
+      "name": "员工.md",
+      "sha256": "59d19db0007e40ec72fc6f9c01c72e0d916f0694617e86776271abe016e8bcc8",
+      "bytes": 13279,
+      "priority": "SUPPLEMENT"
+    },
+    {
+      "name": "sop.md",
+      "sha256": "6295f95f14a40d59a3f660a758bf1261a62c26b75b7b39212dd2e21c2ba21314",
+      "bytes": 7734,
+      "priority": "SUPPLEMENT"
+    },
+    {
+      "name": "ssss.md",
+      "sha256": "791cf19ec68fff11931324b8a37256e440ed31793a8a51e515fcd1b640719472",
+      "bytes": 7743,
+      "priority": "SUPPLEMENT"
+    },
+    {
+      "name": "ssss 2.md",
+      "sha256": "cc78441985cbf16f6b3865463918b43439585f4f7bf2fccd246c927bd7cd3877",
+      "bytes": 12653,
+      "priority": "SUPPLEMENT"
+    },
+    {
+      "name": "防御性.md",
+      "sha256": "60c0d8cefdc581696cac3bbd9d5478ebe4d097a0bf029e8509a051a3cc66ea6b",
+      "bytes": 26774,
+      "priority": "SUPPLEMENT"
+    },
+    {
+      "name": "Claude 的建议.md",
+      "sha256": "68c535ffb1747d99227d0e83ff5fecb57ba967c3648c7a1224c82c3a9de2664d",
+      "bytes": 4161,
+      "priority": "PRIMARY"
+    }
+  ],
+  "priorSkill": "deterministic-vibecoding, read as behavior baseline; original untouched",
+  "claudeSourceCode": "NOT_PROVIDED_IN_ATTACHMENTS"
+}
