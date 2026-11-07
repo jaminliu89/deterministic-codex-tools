@@ -34,6 +34,12 @@ init 默认预览；--apply 只创建不存在的文件，不初始化 Git、不
 
 类型：static-web / fullstack-saas / python / cli / ai-agent / legacy-reorg。只生成文档用 docs 子命令。完整适用条件和变更维护见 skills/project-docs/SKILL.md。
 
+## Mission 守轴（可选，存在 Prism Mission 时强制）
+
+`node "$DCT_HOME/bin/dct.mjs" axis --project "$PROJECT"` 只读取得 Prism 的 Mission ID 与 `specHash`，经任务 owner 审查后填入 `.dct/config.json` 的 `task.missionRef`。当项目有 `.prism/mission.json` 却未绑定或发生目标/范围/验收漂移时，`doctor/check/gate` 均拒绝放行；没有 Prism Mission 的项目保持独立模式。机器只能核查合同一致性，不能替代目标语义审查。参见 [守轴合同](docs/AXIS.md)。
+
+新增 `browser-extension` 模板，不再强迫 Chrome 扩展使用 SaaS 的管理员初始化与 seed 资料；迁移既有项目类型需单独审核项目文档契约，不能自行改绿。
+
 ## 配置真实检查
 
 填写 `.dct/config.json`，将 task.baseHead 固定为核验过的 Git 基线，scope 检查包含该基线之后已提交的改动；配置 schema 见 docs/CONFIG.md 与 examples/config.json。argv 是可信项目代码，只有 `check --run` 或 `gate --run` 执行；默认 doctor/gate/MCP 不运行项目命令。命令不用 shell，但仍可执行任意本机项目代码；必须先审阅，不把此工具当 OS 安全隔离。
