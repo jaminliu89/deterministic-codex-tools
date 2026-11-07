@@ -24,6 +24,8 @@ node "$DCT_HOME/bin/dct.mjs" axis --project "$PROJECT"
     "baseHead": "任务开始时的真实 SHA",
     "allowedPaths": ["src/", "test/"],
     "protectedPaths": ["protected/"],
+    "branch": "feat/this-exact-wp-branch",
+    "missionAcceptance": [0],
     "missionRef": {
       "id": "MSN-EXAMPLE",
       "specHash": "由 dct axis 计算的 64 位 SHA-256"
@@ -32,7 +34,10 @@ node "$DCT_HOME/bin/dct.mjs" axis --project "$PROJECT"
 }
 ```
 
-示例只展示任务字段，不能直接复制并声称验证通过。该 `specHash` 是 DCT 对 Mission `spec` 的递归键排序紧凑 JSON 所做 SHA-256，不等同于 Prism Python 中含空格的 `contract_hash`。**不要手填、猜测或静默重算**；Mission 变化应回到 Prism 走 `amend` 与批准流程，然后更新 DCT 任务范围，失效旧测试和审查证据。
+示例只展示任务字段，不能直接复制并声称验证通过。
+
+- `task.branch` 必须是当前 Git feature branch 的精确名称，禁止用旧任务合同在新分支持续施工。
+- `task.missionAcceptance` 是本次工作包映射到 Mission 原始 `spec.acceptance` 的 **0 起始索引数组**，必须非空、有效且不可重复；`dct axis` 会输出索引对应的原始验收文字。匹配索引只做可追踪性，仍须独立审核相关性和真实结果。该 `specHash` 是 DCT 对 Mission `spec` 的递归键排序紧凑 JSON 所做 SHA-256，不等同于 Prism Python 中含空格的 `contract_hash`。**不要手填、猜测或静默重算**；Mission 变化应回到 Prism 走 `amend` 与批准流程，然后更新 DCT 任务范围，失效旧测试和审查证据。
 
 ## 机器行为
 
@@ -42,7 +47,8 @@ node "$DCT_HOME/bin/dct.mjs" axis --project "$PROJECT"
 | 存在 Mission、缺 `missionRef` | `MISSION_REF_REQUIRED` |
 | Mission 缺失/读取失败、合同格式无效、未经授权 | `NOT_READY` |
 | Mission ID 或 spec 摘要变化 | `MISSION_ID_DRIFT` / `MISSION_SPEC_DRIFT` |
-| ID、spec 与任务绑定完全一致 | 这一关通过；仍须其他检查、独立审查与真实产物 |
+| Mission 绑定存在，但任务分支或验收映射缺失/不匹配 | `NOT_READY`，不得复用旧任务或不注明交付目标 |
+| ID、spec、分支与验收映射完全一致 | 这一关通过；仍须其他检查、独立审查与真实产物 |
 
 审查请求将附上 `mission` 回执，但仍需**真正独立执行者**判断本次 `task.outcome` 是否支持原始 goal、是否在 scope 内、是否覆盖相关历史功能。机器哈希只证明合同没被偷偷换掉，不会理解用户意图。
 
