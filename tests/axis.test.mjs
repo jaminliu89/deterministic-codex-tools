@@ -27,6 +27,8 @@ test('exact Prism mission binding allows configured checks; scope drift blocks',
   put(root,'.prism/mission.json',json(mission));
   c.task.allowedPaths.push('.prism');
   c.task.missionRef=missionView(root).missionRef;
+  c.task.branch='feature/test';
+  c.task.missionAcceptance=[0];
   put(root,'.dct/config.json',json(c));
   assert.equal(doctor(root).status,'PASS');
   assert.equal(runChecks(root).status,'PASS');
@@ -43,6 +45,8 @@ test('mission identity change is independent blocker, even if spec is equal', ()
   put(root,'.prism/mission.json',json(mission));
   c.task.allowedPaths.push('.prism');
   c.task.missionRef=missionView(root).missionRef;
+  c.task.branch='feature/test';
+  c.task.missionAcceptance=[0];
   put(root,'.dct/config.json',json(c));
   mission.id='MSN-other';
   put(root,'.prism/mission.json',json(mission));
@@ -55,6 +59,8 @@ test('unsigned or incomplete mission refuses a valid-looking reference', () => {
   put(root,'.prism/mission.json',json(mission));
   c.task.allowedPaths.push('.prism');
   c.task.missionRef=missionView(root).missionRef;
+  c.task.branch='feature/test';
+  c.task.missionAcceptance=[0];
   put(root,'.dct/config.json',json(c));
   mission.spec.acceptance=[];
   put(root,'.prism/mission.json',json(mission));
@@ -79,4 +85,24 @@ test('canonical Mission spec hash independent of key order, sensitive to accepta
   assert.equal(specHash(a),specHash(b));
   b.acceptance.push('b');
   assert.notEqual(specHash(a),specHash(b));
+});
+
+test('old task cannot be reused on another branch; missing acceptance link is blocked', () => {
+  const {root,c}=fixture();
+  const mission=authorized(root);
+  put(root,'.prism/mission.json',json(mission));
+  c.task.allowedPaths.push('.prism');
+  c.task.missionRef=missionView(root).missionRef;
+  put(root,'.dct/config.json',json(c));
+  assert.ok(doctor(root).issues.includes('MISSION_TASK_BRANCH_DRIFT'));
+  c.task.branch='feature/test';
+  put(root,'.dct/config.json',json(c));
+  assert.ok(doctor(root).issues.includes('MISSION_ACCEPTANCE_UNMAPPED'));
+  c.task.missionAcceptance=[99];
+  put(root,'.dct/config.json',json(c));
+  assert.ok(doctor(root).issues.includes('MISSION_ACCEPTANCE_INVALID'));
+  c.task.missionAcceptance=[0];
+  c.task.branch='feature/stale';
+  put(root,'.dct/config.json',json(c));
+  assert.ok(doctor(root).issues.includes('MISSION_TASK_BRANCH_DRIFT'));
 });
