@@ -25,6 +25,21 @@ node "$DCT_HOME/bin/dct.mjs" gate --project /absolute/project
 3. 功能分支施工；dirty 状态先辨别所有权，不切走他人分支、不自动嵌套建库。现有文档优先使用，仅缺失时 project-docs 预览后创建。简单文字修改检查 diff 即可，不强制全套治理；已有正式合同不得切轻量流程绕过。
 4. `.dct/config.json` 明确任务、固定 task.baseHead、允许/保护路径、必需检查 ID 与 requiredTests、真实 argv 与适用能力。检查命令是本机可信项目代码，执行前审阅，DCT 不提供 OS 隔离。不要运行陌生项目的 argv。
 
+## /axis：每个任务重新守住原始产品目标
+
+当业务项目存在 `.prism/mission.json`，开始编码前先执行：
+
+```sh
+node "$DCT_HOME/bin/dct.mjs" axis --project /absolute/project
+node "$DCT_HOME/bin/dct.mjs" doctor --project /absolute/project
+```
+
+- `axis` 必须显示实际 Mission ID、目标范围及原始验收条款；`.dct/config.json` 的 `task.missionRef` 要匹配 ID 和 `specHash`，`task.branch` 精确匹配本功能分支，`task.missionAcceptance` 至少引用一个原始验收项索引。旧任务配置不得跨分支续用。
+- 开工前写下受影响清单：函数/消息链的所有调用方、不同平台和 CDN 的差异、历史可用路径、降级路径、可见用户反馈、预计可能退化的场景。不能用“我只改这一行”取代影响分析。
+- 每次新增功能至少有一条“新增行为应成功”的正向断言和一条“已有行为不得变差”的反向断言；关键 UI/产物必须真实执行。已有测试 SKIP、无浏览器、无 ffprobe 或 CDN 限流只代表证据缺失，不能称为产品 PASS。
+- Mission 原始目标、scope 或 acceptance 发生变化，必须停止并由 Prism/任务 owner 审批变更，再重建当前任务合同与证据。任何新点子先登记，不自动改写任务轴线。
+- `dct axis` 只是只读合同一致性检查，不授权自动修改 Mission、推送、合并或发布。没有 Prism Mission 的独立项目仍沿用本包原流程。
+
 ## 实现与回归
 
 Bug 必须先复现，同一场景修后复验；至少记录新行为及受影响历史行为。使用项目原有框架，DCT 支持 Node TAP、Python unittest 和 JSON stdin→stdout 精确对账；其他测试格式不能伪装。零测试、skip、todo、仅 exit0、打印 ok 均不足。

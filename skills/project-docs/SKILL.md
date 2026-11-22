@@ -1,6 +1,6 @@
 ---
 name: project-docs
-description: 按静态 Web、全栈 SaaS、Python、CLI、AI Agent、遗留重组六类项目一键生成针对性文档，验证结构并维护变更。
+description: 按静态 Web、全栈 SaaS、浏览器扩展、Python、CLI、AI Agent、遗留重组七类项目一键生成针对性文档，验证结构并维护变更。
 ---
 
 # 按项目类型生成文档
@@ -13,6 +13,7 @@ description: 按静态 Web、全栈 SaaS、Python、CLI、AI Agent、遗留重�
 |---|---|---|
 | static-web | 静态内容/无后端 | 构建、深链、404、移动/键盘、资源失败 |
 | fullstack-saas | 自有后端/多用户/持久化 | API、租户隔离、管理员 seed/找回、CORS、health、重启读写 |
+| browser-extension | Chrome/Chromium 等浏览器扩展及本地桥 | manifest、扩展消息链、注入版本、真实按钮、磁盘产物、站点回归；关键 SKIP 禁止放行 |
 | python | Python 脚本/库/服务 | 环境、真实输入输出、异常、打包后导入 |
 | cli | 终端程序 | 参数、退出码、JSON 流、路径空格、无覆盖、隔离安装 |
 | ai-agent | 模型/工具/多 Agent | 预算、工具权限、恢复、恶意输入、真实模型与合成评测分开 |

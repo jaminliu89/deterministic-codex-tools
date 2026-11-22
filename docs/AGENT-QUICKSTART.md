@@ -15,7 +15,7 @@ gh repo clone jaminliu89/deterministic-codex-tools "$DCT_HOME" && node "$DCT_HOM
 
 只有最后一行执行安装。想先看计划，去掉 --apply。已有工具目录时不重新 clone，直接运行 setup 命令。安装不自动拉取/重置旧工具，不改模型、费用、权限、现有客户端全局配置或 Git 状态。
 
---type 可选 static-web / fullstack-saas / python / cli / ai-agent / legacy-reorg。不需要自动复制 Skill 时可省略 --skills-dir，直接让 Agent 读取工具根目录内两个 SKILL.md。
+--type 可选 static-web / fullstack-saas / browser-extension / python / cli / ai-agent / legacy-reorg。不需要自动复制 Skill 时可省略 --skills-dir，直接让 Agent 读取工具根目录内两个 SKILL.md。
 
 一次执行会：
 
@@ -31,6 +31,8 @@ gh repo clone jaminliu89/deterministic-codex-tools "$DCT_HOME" && node "$DCT_HOM
 node "$DCT_HOME/bin/dct.mjs" doctor --project "$PROJECT"
 node "$DCT_HOME/bin/dct.mjs" --help
 ```
+
+如果项目具有 Prism Mission，先执行 `node "$DCT_HOME/bin/dct.mjs" axis --project "$PROJECT"`，审阅后填写 `task.missionRef`、`task.branch`、`task.missionAcceptance`。不允许沿用此前任务 ID 或旧分支验收，详见 [AXIS.md](AXIS.md)。
 
 doctor 在模板未补全时返回 NOT_READY 是预期。按 [CONFIG.md](CONFIG.md) 填真实 task/baseHead/allowedPaths/protectedPaths/checks/requiredTests，补文档与历史回归。只在功能分支工作，git init/首次commit由当前项目授权处理，脚本不替用户建立假基线。
 

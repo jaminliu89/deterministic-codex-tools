@@ -1,6 +1,8 @@
 # 可选集成契约 v1
 
-本包默认没有外部集成依赖或模型调用。SkillHub/Prism/VibeGuard 均可通过如下数据接口集成，尚未接入任何真实运行链路。
+本包默认没有外部运行依赖或模型调用。新增**只读本地 Prism Mission 合同适配器**：当项目存在 `.prism/mission.json` 时，通过 `dct axis` 获得不可推断的绑定摘要，`doctor/check/gate` 拒绝缺失或过期的 Mission 引用。详见 [AXIS.md](AXIS.md)。这不代表已连接 Prism 服务端、VibeGuard、SkillHub 或真实执行者。
+
+其余接口如下：
 
 - 输入：项目绝对路径、用户目标与授权；通过 CLI JSON stdout 取 doctor/check/gate 结果。
 - 版本绑定：source/engine/head/branch 必须原样保留。外部系统不能用另一个版本绿灯替换。
