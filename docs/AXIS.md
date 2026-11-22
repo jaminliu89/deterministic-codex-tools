@@ -13,7 +13,7 @@ node "$DCT_HOME/bin/dct.mjs" axis --project "$PROJECT"
 - `spec.goal`、`spec.scope`、`spec.target`、至少一项非空 `spec.acceptance`
 - `spec.implementation_authorized === true`、明确 `authorization_statement`
 
-`axis` 以只读方式返回 `missionRef`。项目 DCT `.dct/config.json` 应由任务 owner 在审查任务范围后登记：
+`axis` 以只读方式返回 `missionRef`。**有效输出状态是 `SELF_ATTESTED`，不是 `PASS` 或已认证授权。** `implementation_authorized` 与 `authorization_statement` 都来自项目内可编辑 JSON；它们只表明本地声明存在且结构可读，不证明谁批准了它、批准者是否有权限，或内容是否真的得到用户确认。结果中的 `trust: LOCAL_UNVERIFIED_DECLARATION` 必须保留并向调用方传递。项目 DCT `.dct/config.json` 应由任务 owner 在审查任务范围后登记：
 
 ```json
 {
@@ -48,7 +48,7 @@ node "$DCT_HOME/bin/dct.mjs" axis --project "$PROJECT"
 | Mission 缺失/读取失败、合同格式无效、未经授权 | `NOT_READY` |
 | Mission ID 或 spec 摘要变化 | `MISSION_ID_DRIFT` / `MISSION_SPEC_DRIFT` |
 | Mission 绑定存在，但任务分支或验收映射缺失/不匹配 | `NOT_READY`，不得复用旧任务或不注明交付目标 |
-| ID、spec、分支与验收映射完全一致 | 这一关通过；仍须其他检查、独立审查与真实产物 |
+| ID、spec、分支与验收映射完全一致 | 本地合同一致性检查通过；仍须其他检查、独立审查与真实产物 |
 
 审查请求将附上 `mission` 回执，但仍需**真正独立执行者**判断本次 `task.outcome` 是否支持原始 goal、是否在 scope 内、是否覆盖相关历史功能。机器哈希只证明合同没被偷偷换掉，不会理解用户意图。
 
