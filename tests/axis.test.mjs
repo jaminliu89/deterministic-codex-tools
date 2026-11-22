@@ -14,10 +14,14 @@ function authorized(root) {
     runs:[],reviews:[]};
 }
 
-test('Prism Mission present requires explicit DCT task reference', () => {
+test('Prism Mission declaration is explicitly self-attested, never authenticated', () => {
   const {root}=fixture();
   put(root,'.prism/mission.json',json(authorized(root)));
-  assert.equal(missionView(root).status,'PASS');
+  const view=missionView(root);
+  assert.equal(view.status,'SELF_ATTESTED');
+  assert.equal(view.consistency,'MATCHED');
+  assert.equal(view.trust,'LOCAL_UNVERIFIED_DECLARATION');
+  assert.equal(view.semanticAlignment,'NOT_EVALUATED');
   assert.ok(doctor(root).issues.includes('MISSION_REF_REQUIRED'));
 });
 
@@ -32,7 +36,10 @@ test('exact Prism mission binding allows configured checks; scope drift blocks',
   put(root,'.dct/config.json',json(c));
   assert.equal(doctor(root).status,'PASS');
   assert.equal(runChecks(root).status,'PASS');
-  assert.equal(reviewRequest(root).mission.missionRef.specHash,c.task.missionRef.specHash);
+  const request=reviewRequest(root);
+  assert.equal(request.mission.missionRef.specHash,c.task.missionRef.specHash);
+  assert.equal(request.mission.status,'SELF_ATTESTED');
+  assert.equal(request.mission.trust,'LOCAL_UNVERIFIED_DECLARATION');
   mission.spec.scope='Remove historical compatibility and rewrite everything';
   put(root,'.prism/mission.json',json(mission));
   assert.ok(doctor(root).issues.includes('MISSION_SPEC_DRIFT'));
