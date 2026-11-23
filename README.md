@@ -69,6 +69,19 @@ sentinel 只保存状态和失败诊断，不自动 reset、restore、clean、ch
 4. 独立 reviewer 由用户/宿主配置成另一个真实上下文。模型 API 未集成、不产生费用；未配 reviewer 仍可检查/交接，但 gate 不放行。
 5. 本地 hook 可 `--no-verify` 绕过。远端必须由管理员另外设置保护分支、必需 CI 与独立 PR review，禁止自批；本地工具不能证明远端设置。ci 子命令仅生成可选的同级 project/dct checkout 配方，需配置工具独立远端与固定 commit SHA，见 docs/CI.md。
 
+## Anchored Gate（远端证据采集，WP-03）
+
+可选只读命令从 GitHub API 采集 PR head SHA、base branch protection、required checks、check-run 来源与独立 review：
+
+```sh
+DCT_GITHUB_TOKEN="$READ_ONLY_TOKEN" \
+DCT_REQUIRED_CHECKS='["Trusted CI"]' \
+DCT_TRUSTED_APP_IDS='15368' \
+node "$DCT_HOME/scripts/anchored-gate.mjs" --repo owner/name --pr 123
+```
+
+策略必须由可信宿主注入，不能从 PR checkout 读取。采集器要求 classic branch protection、admin enforcement、strict required checks、trusted App 绑定、禁止 force-push/deletion，以及当前 SHA 的独立审批。权限不足、ruleset-only、分页不完整或任何证据缺失均 BLOCKED。即使远端事实匹配，输出仍固定 `releaseAuthorized:false`；它不是签名服务、可信默认分支执行器或合并授权。完整边界见 [ANCHORED-GATE](docs/ANCHORED-GATE.md)。
+
 ## 验证与边界
 
 ```sh
