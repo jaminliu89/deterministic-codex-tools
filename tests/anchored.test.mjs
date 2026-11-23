@@ -26,9 +26,9 @@ function fixture(overrides={}) {
     required_status_checks:{strict:true,checks:[{context:'Trusted CI',app_id:APP}]},
     allow_force_pushes:{enabled:false}, allow_deletions:{enabled:false}
   };
-  const checks = { total_count:1, check_runs:[{name:'Trusted CI',head_sha:SHA,
+  const checks = { total_count:1, check_runs:[{id:1,created_at:'2026-11-23T10:00:00Z',name:'Trusted CI',head_sha:SHA,
     status:'completed',conclusion:'success',app:{id:APP}}] };
-  const reviews = [{user:{login:'reviewer'},state:'APPROVED',commit_id:SHA,submitted_at:'2026-11-23T10:00:00Z'}];
+  const reviews = [{id:1,user:{login:'reviewer'},state:'APPROVED',commit_id:SHA,submitted_at:'2026-11-23T10:00:00Z'}];
   const payloads = new Map([
     ['/pulls/7',pr], ['/branches/main',branch], ['/branches/main/protection',protection],
     ['/commits/'+SHA+'/check-runs',checks], ['/pulls/7/reviews',reviews]
@@ -59,20 +59,20 @@ test('collects exact-head remote policy evidence but never authorizes release', 
 
 test('rejects author self-approval and stale-head approvals', async () => {
   for (const review of [
-    {user:{login:'author'},state:'APPROVED',commit_id:SHA,submitted_at:'2026-11-23T10:00:00Z'},
-    {user:{login:'reviewer'},state:'APPROVED',commit_id:'b'.repeat(40),submitted_at:'2026-11-23T10:00:00Z'}
+    {id:2,user:{login:'author'},state:'APPROVED',commit_id:SHA,submitted_at:'2026-11-23T10:00:00Z'},
+    {id:3,user:{login:'reviewer'},state:'APPROVED',commit_id:'b'.repeat(40),submitted_at:'2026-11-23T10:00:00Z'}
   ]) {
     const f=fixture(); f.state.reviews=[review];
     const result=await collectAnchoredEvidence({...policy,fetchImpl:f.fetchImpl});
-    assert.equal(result.reason,'CURRENT_HEAD_INDEPENDENT_APPROVAL_MISSING');
+    assert.equal(result.reason,'CURRENT_HEAD_INDEPENDENT_APPROVALS_MISSING');
   }
 });
 
 test('latest reviewer state wins; dismissed or changes-requested review cannot pass', async () => {
   const f=fixture();
-  f.state.reviews.push({user:{login:'reviewer'},state:'CHANGES_REQUESTED',commit_id:SHA,submitted_at:'2026-11-23T11:00:00Z'});
+  f.state.reviews.push({id:2,user:{login:'reviewer'},state:'CHANGES_REQUESTED',commit_id:SHA,submitted_at:'2026-11-23T11:00:00Z'});
   const result=await collectAnchoredEvidence({...policy,fetchImpl:f.fetchImpl});
-  assert.equal(result.reason,'CURRENT_HEAD_INDEPENDENT_APPROVAL_MISSING');
+  assert.equal(result.reason,'CURRENT_HEAD_INDEPENDENT_APPROVALS_MISSING');
 });
 
 test('rejects unprotected base and insufficient server-side review/check policy', async () => {
@@ -108,6 +108,49 @@ test('rejects missing, stale, pending, failed, or untrusted check-runs', async (
     const result=await collectAnchoredEvidence({...policy,fetchImpl:f.fetchImpl});
     assert.equal(result.status,'BLOCKED');
   }
+});
+
+test('requires the configured number of distinct current-head approvals', async () => {
+  const f=fixture();
+  f.state.protection.required_pull_request_reviews.required_approving_review_count=2;
+  const one=await collectAnchoredEvidence({...policy,fetchImpl:f.fetchImpl});
+  assert.equal(one.reason,'CURRENT_HEAD_INDEPENDENT_APPROVALS_MISSING');
+  f.state.reviews.push({id:2,user:{login:'reviewer-two'},state:'APPROVED',commit_id:SHA,submitted_at:'2026-11-23T11:05:00Z'});
+  const two=await collectAnchoredEvidence({...policy,fetchImpl:f.fetchImpl});
+  assert.equal(two.status,'REMOTE_POLICY_MATCHED_NOT_RELEASE_AUTHORIZED');
+});
+
+test('uses the newest check run, not an older success returned later by the API', async () => {
+  const f=fixture();
+  f.state.checks.check_runs=[
+    {id:2,created_at:'2026-11-23T11:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'failure',app:{id:APP}},
+    {id:1,created_at:'2026-11-23T10:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'success',app:{id:APP}}
+  ];
+  const result=await collectAnchoredEvidence({...policy,fetchImpl:f.fetchImpl});
+  assert.equal(result.reason,'TRUSTED_CHECK_RUN_NOT_SUCCESSFUL');
+});
+
+test('binds check-runs to the exact App ID configured by branch protection', async () => {
+  const f=fixture();
+  f.state.checks.check_runs=[
+    {id:2,created_at:'2026-11-23T11:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'success',app:{id:999}},
+    {id:1,created_at:'2026-11-23T10:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'failure',app:{id:APP}}
+  ];
+  const result=await collectAnchoredEvidence({...policy,trustedAppIds:[APP,999],fetchImpl:f.fetchImpl});
+  assert.equal(result.reason,'TRUSTED_CHECK_RUN_NOT_SUCCESSFUL');
+});
+
+test('rejects a truncated check-run page even when the Link header is missing', async () => {
+  const f=fixture();
+  const wrapped=async (url,opts)=>{
+    const r=await f.fetchImpl(url,opts);
+    if(new URL(url).pathname.endsWith('/check-runs')) {
+      return response({total_count:2,check_runs:f.state.checks.check_runs});
+    }
+    return r;
+  };
+  const result=await collectAnchoredEvidence({...policy,fetchImpl:wrapped});
+  assert.equal(result.reason,'REMOTE_PAGINATION_INCOMPLETE');
 });
 
 test('403 protection read is a hard block, never downgraded to local PASS', async () => {
