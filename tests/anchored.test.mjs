@@ -31,7 +31,7 @@ function fixture(overrides={}) {
   const reviews = [{user:{login:'reviewer'},state:'APPROVED',commit_id:SHA,submitted_at:'2026-11-23T10:00:00Z'}];
   const payloads = new Map([
     ['/pulls/7',pr], ['/branches/main',branch], ['/branches/main/protection',protection],
-    ['/commits/'+SHA+'/check-runs',checks], ['/pulls/7/reviews',{items:reviews}]
+    ['/commits/'+SHA+'/check-runs',checks], ['/pulls/7/reviews',reviews]
   ]);
   const state = {pr,branch,protection,checks,reviews};
   const fetchImpl = async (url) => {
@@ -41,8 +41,8 @@ function fixture(overrides={}) {
     if (path === '/pulls/7') payload = state.pr;
     if (path === '/branches/main') payload = state.branch;
     if (path === '/branches/main/protection') payload = state.protection;
-    if (path === '/commits/'+SHA+'/check-runs') payload = {items:state.checks.check_runs};
-    if (path === '/pulls/7/reviews') payload = {items:state.reviews};
+    if (path === '/commits/'+SHA+'/check-runs') payload = {total_count:state.checks.check_runs.length,check_runs:state.checks.check_runs};
+    if (path === '/pulls/7/reviews') payload = state.reviews;
     return response(payload);
   };
   return { fetchImpl, state };
