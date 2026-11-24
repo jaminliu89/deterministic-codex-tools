@@ -187,3 +187,33 @@ test('pagination that cannot be proven complete is blocked', async () => {
   assert.equal(result.status,'BLOCKED');
   assert.equal(result.reason,'REMOTE_PAGINATION_INCOMPLETE');
 });
+
+test('requires exact external policy coverage of every server-required check', async () => {
+  const serverHasExtra = fixture();
+  serverHasExtra.state.protection.required_status_checks.checks.push({context:'Extra CI',app_id:APP});
+  const omitted = await collectAnchoredEvidence({...policy,fetchImpl:serverHasExtra.fetchImpl});
+  assert.equal(omitted.reason,'REQUIRED_CHECK_POLICY_MISMATCH');
+
+  const callerHasExtra = fixture();
+  const extra = await collectAnchoredEvidence({
+    ...policy, requiredChecks:['Trusted CI','Extra CI'], fetchImpl:callerHasExtra.fetchImpl
+  });
+  assert.equal(extra.reason,'REQUIRED_CHECK_POLICY_MISMATCH');
+});
+
+test('blocks a full review page when the pagination Link header is missing', async () => {
+  const f = fixture();
+  f.state.reviews = Array.from({length:100},(_,i)=>({
+    id:i+1, user:{login:'reviewer-'+i}, state:'APPROVED', commit_id:SHA,
+    submitted_at:'2026-11-23T10:00:00Z'
+  }));
+  const wrapped = async (url,opts) => {
+    const r = await f.fetchImpl(url,opts);
+    if (new URL(url).pathname.endsWith('/reviews')) return response(f.state.reviews);
+    return r;
+  };
+  const result = await collectAnchoredEvidence({...policy,fetchImpl:wrapped});
+  assert.equal(result.status,'BLOCKED');
+  assert.equal(result.reason,'REMOTE_PAGINATION_INCOMPLETE');
+  assert.equal(result.releaseAuthorized,false);
+});

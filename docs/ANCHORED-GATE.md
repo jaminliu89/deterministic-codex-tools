@@ -20,7 +20,7 @@ DCT_TRUSTED_APP_IDS='15368' \
 node scripts/anchored-gate.mjs --repo owner/name --pr 123
 ```
 
-命令只 GET GitHub API，不 checkout、不执行 PR 代码、不写 GitHub。分页未完整读取、403、超时、字段缺失、SHA 漂移、检查失败/来源不可信、review 自批/旧 SHA、策略不可读均返回 BLOCKED。
+命令只 GET GitHub API，不 checkout、不执行 PR 代码、不写 GitHub。分页未完整读取（包括 reviews 返回满 100 条却缺少 Link header）、403、超时、字段缺失、SHA 漂移、检查失败/来源不可信、review 自批/旧 SHA、策略不可读均返回 BLOCKED。
 
 ## 当前策略范围
 
@@ -28,7 +28,7 @@ node scripts/anchored-gate.mjs --repo owner/name --pr 123
 - base branch protected；
 - enforce admins；
 - 至少一个 PR approval，并 dismiss stale reviews；
-- strict required checks，且每个 required check 绑定明确的 trusted App ID；
+- strict required checks，且每个 required check 绑定明确的 trusted App ID；外部 `DCT_REQUIRED_CHECKS` 必须与服务器端 contexts 完全一致，缺少、多余、重复或无效项均 BLOCKED；
 - 禁止 force-push 和 branch deletion；
 - 当前 PR head SHA 上对应可信 App 的 required check 全部成功；
 - 至少一个非 PR 作者 reviewer 对当前 head SHA 的最新状态为 APPROVED。
