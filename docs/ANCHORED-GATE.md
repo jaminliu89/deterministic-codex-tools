@@ -30,7 +30,7 @@ node scripts/anchored-gate.mjs --repo owner/name --pr 123
 - 至少一个 PR approval，并 dismiss stale reviews；
 - strict required checks，且每个 required check 绑定明确的 trusted App ID；外部 `DCT_REQUIRED_CHECKS` 必须与服务器端 contexts 完全一致，缺少、多余、重复或无效项均 BLOCKED；
 - 禁止 force-push 和 branch deletion；
-- 当前 PR head SHA 上对应可信 App 的 required check 全部成功；
+- 当前 PR head SHA 上对应可信 App 的 required check 全部成功；Check Runs 时间顺序使用 GitHub API 实际提供的 `started_at`；缺失/无效（例如尚未启动的排队检查）一律 BLOCKED，不能依赖 CheckRun 对象不存在的 `created_at` 字段；
 - 至少一个非 PR 作者 reviewer 对当前 head SHA 的最新状态为 APPROVED。
 
 Ruleset-only 策略暂不接受，返回 BLOCKED；后续必须单独实现 ruleset 规则、bypass actor 和继承策略解析，不能把 rulesets 列表为空当作 branch protection。
