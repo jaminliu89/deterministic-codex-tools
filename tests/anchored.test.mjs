@@ -26,7 +26,7 @@ function fixture(overrides={}) {
     required_status_checks:{strict:true,checks:[{context:'Trusted CI',app_id:APP}]},
     allow_force_pushes:{enabled:false}, allow_deletions:{enabled:false}
   };
-  const checks = { total_count:1, check_runs:[{id:1,created_at:'2026-11-23T10:00:00Z',name:'Trusted CI',head_sha:SHA,
+  const checks = { total_count:1, check_runs:[{id:1,started_at:'2026-11-23T10:00:00Z',name:'Trusted CI',head_sha:SHA,
     status:'completed',conclusion:'success',app:{id:APP}}] };
   const reviews = [{id:1,user:{login:'reviewer'},state:'APPROVED',commit_id:SHA,submitted_at:'2026-11-23T10:00:00Z'}];
   const payloads = new Map([
@@ -123,8 +123,8 @@ test('requires the configured number of distinct current-head approvals', async 
 test('uses the newest check run, not an older success returned later by the API', async () => {
   const f=fixture();
   f.state.checks.check_runs=[
-    {id:2,created_at:'2026-11-23T11:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'failure',app:{id:APP}},
-    {id:1,created_at:'2026-11-23T10:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'success',app:{id:APP}}
+    {id:2,started_at:'2026-11-23T11:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'failure',app:{id:APP}},
+    {id:1,started_at:'2026-11-23T10:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'success',app:{id:APP}}
   ];
   const result=await collectAnchoredEvidence({...policy,fetchImpl:f.fetchImpl});
   assert.equal(result.reason,'TRUSTED_CHECK_RUN_NOT_SUCCESSFUL');
@@ -133,8 +133,8 @@ test('uses the newest check run, not an older success returned later by the API'
 test('binds check-runs to the exact App ID configured by branch protection', async () => {
   const f=fixture();
   f.state.checks.check_runs=[
-    {id:2,created_at:'2026-11-23T11:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'success',app:{id:999}},
-    {id:1,created_at:'2026-11-23T10:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'failure',app:{id:APP}}
+    {id:2,started_at:'2026-11-23T11:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'success',app:{id:999}},
+    {id:1,started_at:'2026-11-23T10:00:00Z',name:'Trusted CI',head_sha:SHA,status:'completed',conclusion:'failure',app:{id:APP}}
   ];
   const result=await collectAnchoredEvidence({...policy,trustedAppIds:[APP,999],fetchImpl:f.fetchImpl});
   assert.equal(result.reason,'TRUSTED_CHECK_RUN_NOT_SUCCESSFUL');
@@ -216,4 +216,19 @@ test('blocks a full review page when the pagination Link header is missing', asy
   assert.equal(result.status,'BLOCKED');
   assert.equal(result.reason,'REMOTE_PAGINATION_INCOMPLETE');
   assert.equal(result.releaseAuthorized,false);
+});
+
+
+test('uses GitHub Check Runs started_at and blocks missing freshness timestamps', async () => {
+  const apiShape = fixture();
+  const accepted = await collectAnchoredEvidence({...policy,fetchImpl:apiShape.fetchImpl});
+  assert.equal(accepted.status,'REMOTE_POLICY_MATCHED_NOT_RELEASE_AUTHORIZED');
+
+  const missing = fixture();
+  delete missing.state.checks.check_runs[0].started_at;
+  missing.state.checks.check_runs[0].created_at = '2026-11-23T10:00:00Z';
+  const blockedResult = await collectAnchoredEvidence({...policy,fetchImpl:missing.fetchImpl});
+  assert.equal(blockedResult.status,'BLOCKED');
+  assert.equal(blockedResult.reason,'CHECK_RUN_FRESHNESS_UNVERIFIABLE');
+  assert.equal(blockedResult.releaseAuthorized,false);
 });
